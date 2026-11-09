@@ -1,0 +1,17 @@
+{
+  "api_name": "购物车结算",
+  "url": "/cart/checkout",
+  "method": "POST",
+  "request_body": {
+    "total_amount": "float, 必填, 购物车总金额",
+    "user_level": "string, 必填, 枚举['NORMAL', 'VIP']",
+    "has_coupon": "boolean, 必填, 是否使用优惠券"
+  },
+  "business_rules": [
+    "1. 订单总价 >= 300，满减 50 元。",
+    "2. VIP 用户在满减后，总价额外打 9 折。",
+    "3. 如果使用优惠券，最终金额再减 20 元。",
+    "4. 最终金额最低为 0，不能为负数。",
+    "5. 金额<=0、缺少字段、类型错误均属于异常，需拦截。"
+  ]
+}
